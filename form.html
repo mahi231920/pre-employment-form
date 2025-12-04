@@ -49,19 +49,19 @@
                         <label for="mobile">Mobile number</label>
                         <input id="mobile" name="mobile" type="text" placeholder="+91 98765 43210" />
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="email">Personal email address</label>
                         <input id="email" name="email" type="email" />
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="currentAddress">Current address</label>
                         <textarea id="currentAddress" name="currentAddress"></textarea>
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="permanentAddress">Permanent address</label>
                         <textarea id="permanentAddress" name="permanentAddress"></textarea>
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="emergencyContact">Emergency contact name &amp; number</label>
                         <input id="emergencyContact" name="emergencyContact" type="text" />
                     </div>
@@ -90,7 +90,7 @@
                         <label for="pan">PAN Card</label>
                         <input id="pan" type="text" name="pan" placeholder="PAN number / N/A" />
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="photo">Passport-size photograph</label>
                         <input id="photo" type="file" name="photo" accept="image/*" />
                     </div>
@@ -101,11 +101,11 @@
             <fieldset data-part="3">
             <h2>3. Education &amp; Employment Documents</h2>
                 <div class="grid">
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="resume">Resume / CV (upload)</label>
                         <input id="resume" type="file" name="resume" accept=".pdf,.doc,.docx" />
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="educationList">Educational certificates (list)</label>
                         <input id="educationList" type="text" name="educationList"
                             placeholder="e.g. B.Tech - University XYZ" />
@@ -118,7 +118,7 @@
                         <label for="relievingLetter">Relieving letter from last employer</label>
                         <input id="relievingLetter" type="file" name="relievingLetter" />
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="salarySlips">Last 3-6 months' salary slips</label>
                         <input id="salarySlips" type="file" name="salarySlips" multiple />
                     </div>
@@ -136,11 +136,11 @@
                         <label for="bankName">Bank name &amp; branch</label>
                         <input id="bankName" name="bankName" type="text" />
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="ifsc">IFSC code</label>
                         <input id="ifsc" name="ifsc" type="text" />
                     </div>
-                    <div style="grid-column: 1 / 3">
+                    <div class="span-2">
                         <label for="taxDetails">Any tax / PAN notes</label>
                         <input id="taxDetails" name="taxDetails" type="text" />
                     </div>
@@ -148,7 +148,7 @@
             </fieldset>
 
             <div class="actions">
-                <button type="button" id="prevBtn" class="btn ghost" style="visibility:hidden">Previous</button>
+                <button type="button" id="prevBtn" class="btn ghost">Previous</button>
                 <div>
                     <button type="button" id="saveDraft" class="btn ghost">Save Draft</button>
                     <button type="button" id="nextBtn" class="btn">Next</button>
