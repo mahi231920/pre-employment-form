@@ -99,7 +99,7 @@
 
             <!-- PART 3: Education & Employment -->
             <fieldset data-part="3">
-            <h2>3. Education &amp; Employment Documents</h2>
+                <h2>3. Education &amp; Employment Documents</h2>
                 <div class="grid">
                     <div class="span-2">
                         <label for="resume">Resume / CV (upload)</label>
@@ -195,15 +195,28 @@
                 idx++;
                 updateUI();
             } else {
-                // submit - collect data
+                // FINAL SUBMIT -> send to backend
                 const data = new FormData(form);
-                // You can send `data` via fetch to server. For demo show a confirmation.
-                const preview = {};
-                for (const [k, v] of data.entries()) {
-                    preview[k] = v instanceof File ? v.name : v;
-                }
-                alert('Form submitted. (Demo)\nCheck console for collected data.');
-                console.log('Collected form data:', preview);
+
+                fetch('/api/employees', {
+                    method: 'POST',
+                    body: data
+                })
+                    .then((res) => res.json())
+                    .then((result) => {
+                        if (result.success) {
+                            alert('Form submitted successfully! Employee ID: ' + result.id);
+                            form.reset();
+                            idx = 0;
+                            updateUI();
+                        } else {
+                            alert('Submission failed: ' + (result.message || 'Unknown error'));
+                        }
+                    })
+                    .catch((err) => {
+                        console.error('Error submitting form:', err);
+                        alert('An error occurred while submitting the form.');
+                    });
             }
         });
 
@@ -215,10 +228,11 @@
         });
 
         saveBtn.addEventListener('click', () => {
-            // Save to localStorage as draft
+            // Save to localStorage as draft (skip files)
             const data = {};
             new FormData(form).forEach((v, k) => {
-                data[k] = v instanceof File ? v.name : v;
+                if (v instanceof File) return;
+                data[k] = v;
             });
             try {
                 localStorage.setItem('onboardingDraft', JSON.stringify(data));
@@ -229,12 +243,29 @@
         });
 
         // allow clicking progress steps
-        steps.forEach((s, i) => s.addEventListener('click', () => {
-            idx = i;
+        steps.forEach((s, i) =>
+            s.addEventListener('click', () => {
+                idx = i;
+                updateUI();
+            })
+        );
+
+        // optional: load draft back
+        window.addEventListener('load', () => {
+            try {
+                const saved = localStorage.getItem('onboardingDraft');
+                if (saved) {
+                    const obj = JSON.parse(saved);
+                    Object.keys(obj).forEach((k) => {
+                        const el = form.elements[k];
+                        if (el) el.value = obj[k];
+                    });
+                }
+            } catch (e) { }
             updateUI();
-        }));
-        updateUI();
+        });
     </script>
+
 </body>
 
 </html>
