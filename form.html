@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -9,35 +9,40 @@
 </head>
 
 <body>
+    <div class="header">
+        <img src="logo.png" alt="Company Logo">
+    </div>
+
     <div class="container">
         <h1>Pre-Joining Employee Information</h1>
-        <p class="lead">Please complete all sections. Use <strong>Next</strong> to move forward and
+        <p class="lead">
+            Please complete all sections. Use <strong>Next</strong> to move forward and
             <strong>Previous</strong> to go back.
         </p>
 
         <div class="progress" aria-hidden="true">
             <div class="step active" data-step="0">Personal</div>
             <div class="step" data-step="1">Identification</div>
-            <div class="step" data-step="2">Education &amp; Employment</div>
-            <div class="step" data-step="3">Banking &amp; Tax</div>
+            <div class="step" data-step="2">Education & Employment</div>
+            <div class="step" data-step="3">Banking & Tax</div>
         </div>
 
-        <form id="onboardingForm" novalidate enctype="multipart/form-data">
+        <form id="onboardingForm" novalidate>
             <!-- PART 1: Personal Information -->
             <fieldset class="active" data-part="1">
                 <h2>1. Personal Information</h2>
                 <div class="grid">
                     <div>
-                        <label for="fullName">Full name (as per ID)</label>
+                        <label for="fullName">Full name (as per ID) <span class="req">*</span></label>
                         <input id="fullName" name="fullName" type="text" required />
                     </div>
                     <div>
-                        <label for="dob">Date of birth</label>
+                        <label for="dob">Date of birth <span class="req">*</span></label>
                         <input id="dob" name="dob" type="date" required />
                     </div>
                     <div>
-                        <label for="gender">Gender</label>
-                        <select id="gender" name="gender">
+                        <label for="gender">Gender <span class="req">*</span></label>
+                        <select id="gender" name="gender" required>
                             <option value="">Select</option>
                             <option>Male</option>
                             <option>Female</option>
@@ -46,23 +51,28 @@
                         </select>
                     </div>
                     <div>
-                        <label for="mobile">Mobile number</label>
-                        <input id="mobile" name="mobile" type="text" placeholder="+91 98765 43210" />
+                        <label for="mobile">Mobile number <span class="req">*</span></label>
+                        <input id="mobile" name="mobile" type="text" placeholder="+91 00000 00000" required />
                     </div>
-                    <div class="span-2">
-                        <label for="email">Personal email address</label>
-                        <input id="email" name="email" type="email" />
+                    <div style="grid-column:1/3">
+                        <label for="email">Personal email address <span class="req">*</span></label>
+                        <input id="email" name="email" type="email" required />
                     </div>
-                    <div class="span-2">
-                        <label for="currentAddress">Current address</label>
-                        <textarea id="currentAddress" name="currentAddress"></textarea>
+                    <div style="grid-column:1/3">
+                        <label for="currentAddress">Current address <span class="req">*</span></label>
+                        <textarea id="currentAddress" name="currentAddress" required></textarea>
                     </div>
-                    <div class="span-2">
+                    <div style="grid-column:1/3">
                         <label for="permanentAddress">Permanent address</label>
-                        <textarea id="permanentAddress" name="permanentAddress"></textarea>
+                        <div class="address-row">
+                            <button type="button" id="sameascurrent-add" class="btn-small">
+                                Same as current address
+                            </button>
+                            <textarea id="permanentAddress" name="permanentAddress"></textarea>
+                        </div>
                     </div>
-                    <div class="span-2">
-                        <label for="emergencyContact">Emergency contact name &amp; number</label>
+                    <div style="grid-column:1/3">
+                        <label for="emergencyContact">Emergency contact name & number</label>
                         <input id="emergencyContact" name="emergencyContact" type="text" />
                     </div>
                 </div>
@@ -71,76 +81,75 @@
             <!-- PART 2: Identification Documents -->
             <fieldset data-part="2">
                 <h2>2. Identification Documents</h2>
-                <p class="small">Indicate whether you can provide each document and optionally add details.</p>
+                <p class="small">Fields marked with <span class="req">*</span> are mandatory.</p>
                 <div class="grid">
                     <div>
-                        <label for="drivingLicense">Driving License</label>
-                        <input id="drivingLicense" type="text" name="drivingLicense"
-                            placeholder="License number / N/A" />
+                        <label>Aadhaar Card <span class="req">*</span></label>
+                        <input type="text" name="aadhaar" placeholder="Aadhaar number" required />
                     </div>
                     <div>
-                        <label for="bike">Bike (Registration)</label>
-                        <input id="bike" type="text" name="bike" placeholder="Registration / N/A" />
+                        <label>PAN Card <span class="req">*</span></label>
+                        <input type="text" name="pan" placeholder="PAN number" required />
                     </div>
                     <div>
-                        <label for="aadhaar">Aadhaar Card</label>
-                        <input id="aadhaar" type="text" name="aadhaar" placeholder="Aadhaar number / N/A" />
+                        <label>Driving License</label>
+                        <input type="text" name="drivingLicense" placeholder="License number / N/A" />
                     </div>
                     <div>
-                        <label for="pan">PAN Card</label>
-                        <input id="pan" type="text" name="pan" placeholder="PAN number / N/A" />
+                        <label>Bike (Registration)</label>
+                        <input type="text" name="bike" placeholder="Registration / N/A" />
                     </div>
-                    <div class="span-2">
-                        <label for="photo">Passport-size photograph</label>
-                        <input id="photo" type="file" name="photo" accept="image/*" />
+                    <div style="grid-column:1/3">
+                        <label>Passport-size photograph <span class="req">*</span></label>
+                        <input type="file" name="photo" accept="image/*" required />
                     </div>
                 </div>
             </fieldset>
 
             <!-- PART 3: Education & Employment -->
             <fieldset data-part="3">
-                <h2>3. Education &amp; Employment Documents</h2>
+                <h2>3. Education & Employment Documents</h2>
                 <div class="grid">
-                    <div class="span-2">
-                        <label for="resume">Resume / CV (upload)</label>
-                        <input id="resume" type="file" name="resume" accept=".pdf,.doc,.docx" />
+                    <div style="grid-column:1/3">
+                        <label>Resume / CV (upload) <span class="req">*</span></label>
+                        <input type="file" name="resume" accept=".pdf,.doc,.docx" required />
                     </div>
-                    <div class="span-2">
-                        <label for="educationList">Educational certificates (list)</label>
-                        <input id="educationList" type="text" name="educationList"
-                            placeholder="e.g. B.Tech - University XYZ" />
-                    </div>
-                    <div>
-                        <label for="experienceLetters">Previous employment experience letters</label>
-                        <input id="experienceLetters" type="file" name="experienceLetters" multiple />
+                    <div style="grid-column:1/3">
+                        <label>Educational certificates (list)</label>
+                        <input type="text" name="educationList" placeholder="e.g. B.Tech - University XYZ" />
                     </div>
                     <div>
-                        <label for="relievingLetter">Relieving letter from last employer</label>
-                        <input id="relievingLetter" type="file" name="relievingLetter" />
+                        <label>Previous employment experience letters</label>
+                        <input type="file" name="experienceLetters" multiple />
                     </div>
-                    <div class="span-2">
-                        <label for="salarySlips">Last 3-6 months' salary slips</label>
-                        <input id="salarySlips" type="file" name="salarySlips" multiple />
+                    <div>
+                        <label>Relieving letter from last employer</label>
+                        <input type="file" name="relievingLetter" />
+                    </div>
+                    <div style="grid-column:1/3">
+                        <label>Last 3–6 months’ salary slips</label>
+                        <input type="file" name="salarySlips" multiple />
                     </div>
                 </div>
             </fieldset>
+
             <!-- PART 4: Banking & Tax Details -->
             <fieldset data-part="4">
-                <h2>4. Banking &amp; Tax Details</h2>
+                <h2>4. Banking & Tax Details</h2>
                 <div class="grid">
                     <div>
-                        <label for="bankAccount">Bank account number</label>
-                        <input id="bankAccount" name="bankAccount" type="text" />
+                        <label for="bankAccount">Bank account number <span class="req">*</span></label>
+                        <input id="bankAccount" name="bankAccount" type="text" required />
                     </div>
                     <div>
-                        <label for="bankName">Bank name &amp; branch</label>
-                        <input id="bankName" name="bankName" type="text" />
+                        <label for="bankName">Bank name & branch <span class="req">*</span></label>
+                        <input id="bankName" name="bankName" type="text" required />
                     </div>
-                    <div class="span-2">
-                        <label for="ifsc">IFSC code</label>
-                        <input id="ifsc" name="ifsc" type="text" />
+                    <div style="grid-column:1/3">
+                        <label for="ifsc">IFSC code <span class="req">*</span></label>
+                        <input id="ifsc" name="ifsc" type="text" required />
                     </div>
-                    <div class="span-2">
+                    <div style="grid-column:1/3">
                         <label for="taxDetails">Any tax / PAN notes</label>
                         <input id="taxDetails" name="taxDetails" type="text" />
                     </div>
@@ -148,9 +157,8 @@
             </fieldset>
 
             <div class="actions">
-                <button type="button" id="prevBtn" class="btn ghost">Previous</button>
+                <button type="button" id="prevBtn" class="btn ghost" style="visibility:hidden">Previous</button>
                 <div>
-                    <button type="button" id="saveDraft" class="btn ghost">Save Draft</button>
                     <button type="button" id="nextBtn" class="btn">Next</button>
                 </div>
             </div>
@@ -160,12 +168,20 @@
     </div>
 
     <script>
+        // "Same as current address" button
+        const sameAsCurrentBtn = document.getElementById('sameascurrent-add');
+        const currentAddress = document.getElementById('currentAddress');
+        const permanentAddress = document.getElementById('permanentAddress');
+
+        sameAsCurrentBtn.addEventListener('click', () => {
+            permanentAddress.value = currentAddress.value;
+        });
+
         // Simple multi-step form logic
         const form = document.getElementById('onboardingForm');
         const fieldsets = Array.from(form.querySelectorAll('fieldset'));
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
-        const saveBtn = document.getElementById('saveDraft');
         const steps = Array.from(document.querySelectorAll('.step'));
         let idx = 0;
 
@@ -183,8 +199,10 @@
             let ok = true;
             for (const el of required) {
                 if (!el.value) {
-                    el.style.outline = '2px solid rgba(255,60,60,0.18)';
+                    el.style.outline = '2px solid rgba(239, 68, 68, 0.6)';
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     ok = false;
+                    break;
                 } else {
                     el.style.outline = '';
                 }
@@ -195,28 +213,12 @@
                 idx++;
                 updateUI();
             } else {
-                // FINAL SUBMIT -> send to backend
+                // submit - collect data
                 const data = new FormData(form);
-
-                fetch('/api/employees', {
-                    method: 'POST',
-                    body: data
-                })
-                    .then((res) => res.json())
-                    .then((result) => {
-                        if (result.success) {
-                            alert('Form submitted successfully! Employee ID: ' + result.id);
-                            form.reset();
-                            idx = 0;
-                            updateUI();
-                        } else {
-                            alert('Submission failed: ' + (result.message || 'Unknown error'));
-                        }
-                    })
-                    .catch((err) => {
-                        console.error('Error submitting form:', err);
-                        alert('An error occurred while submitting the form.');
-                    });
+                const preview = {};
+                for (const [k, v] of data.entries()) preview[k] = v instanceof File ? v.name : v;
+                alert('Form submitted. (Demo)\nCheck console for collected data.');
+                console.log('Collected form data:', preview);
             }
         });
 
@@ -224,21 +226,6 @@
             if (idx > 0) {
                 idx--;
                 updateUI();
-            }
-        });
-
-        saveBtn.addEventListener('click', () => {
-            // Save to localStorage as draft (skip files)
-            const data = {};
-            new FormData(form).forEach((v, k) => {
-                if (v instanceof File) return;
-                data[k] = v;
-            });
-            try {
-                localStorage.setItem('onboardingDraft', JSON.stringify(data));
-                alert('Draft saved locally.');
-            } catch (e) {
-                alert('Could not save draft.');
             }
         });
 
@@ -250,22 +237,8 @@
             })
         );
 
-        // optional: load draft back
-        window.addEventListener('load', () => {
-            try {
-                const saved = localStorage.getItem('onboardingDraft');
-                if (saved) {
-                    const obj = JSON.parse(saved);
-                    Object.keys(obj).forEach((k) => {
-                        const el = form.elements[k];
-                        if (el) el.value = obj[k];
-                    });
-                }
-            } catch (e) { }
-            updateUI();
-        });
+        updateUI();
     </script>
-
 </body>
 
 </html>
