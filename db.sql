@@ -1,7 +1,7 @@
-CREATE DATABASE prejoining_db;
+CREATE DATABASE pre_joining_db;
 
-USE prejoining_db;
-CREATE TABLE employee_prejoining (
+USE pre_joining_db;
+CREATE TABLE employee_pre_joining (
     employees_id              INT AUTO_INCREMENT PRIMARY KEY,
     
     -- Part 1: Personal Information
